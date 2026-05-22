@@ -1,1 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GLANCE: Global-to-Local Agentic Navigation</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <style>
+    /* ================= 赛博暗黑科技感核心样式 ================= */
+    :root {
+      --bg-color: #060609; /* 极深星空黑 */
+      --text-color: #d1d9e0; /* 科技浅白 */
+      --neon-blue: #00f3ff; /* 荧光激光蓝 */
+      --neon-blue-glow: rgba(0, 243, 255, 0.35);
+      --panel-bg: rgba(13, 13, 23, 0.85); /* 半透明玄武岩色面板 */
+      --border-color: #1e1e2f;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    .title, .subtitle {
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .publication-title {
+      font-weight: 900;
+      background: linear-gradient(90deg, #ffffff, var(--neon-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px var(--neon-blue-glow);
+    }
+
+    .author-block {
+      display: inline-block;
+      margin-right: 15px;
+      font-size: 1.1rem;
+      color: #92a0ad;
+    }
+
+    .author-block strong { color: #ffffff; }
+    .institution-block { color: #647380; font-size: 0.95rem; margin-top: 10px; }
+
+    /* 赛博按钮样式 */
+    .btn-sci-fi {
+      background-color: transparent;
+      color: var(--neon-blue);
+      border: 1px solid var(--neon-blue);
+      border-radius: 4px;
+      margin: 5px;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+      font-family: 'Orbitron', sans-serif;
+      box-shadow: 0 0 10px var(--neon-blue-glow);
+    }
+
+    .btn-sci-fi:hover {
+      background-color: var(--neon-blue);
+      color: #000000;
+      box-shadow: 0 0 20px var(--neon-blue);
+      font-weight: bold;
+    }
+
+    /* 模块面板 */
+    .sci-fi-panel {
+      background-color: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 35px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.6), 0 4px 20px rgba(0,0,0,0.8);
+      border-top: 3px solid var(--neon-blue);
+    }
+
+    .abstract-text { font-size: 1.1rem; text-align: justify; color: #adbac7; }
+    .highlight-text { color: var(--neon-blue); font-weight: bold; text-shadow: 0 0 5px var(--neon-blue-glow); }
+
+    /* ================= 原生高级轮播图样式 ================= */
+    .carousel-container {
+      position: relative;
+      max-width: 100%;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
+    }
+
+    .mySlides { display: none; width: 100%; position: relative; }
+    .mySlides img { width: 100%; vertical-align: middle; display: block; filter: brightness(0.9); }
+
+    /* 左右切换箭头 */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 16px;
+      color: var(--neon-blue);
+      font-weight: bold;
+      font-size: 24px;
+      transition: 0.3s ease;
+      user-select: none;
+      background-color: rgba(0,0,0,0.7);
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .next { right: 0; }
+    .prev:hover, .next:hover { background-color: var(--neon-blue); color: #000000; }
+
+    /* 悬浮描述气泡 */
+    .text-caption {
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      padding: 10px 20px;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 75%;
+      text-align: center;
+      background: rgba(5, 5, 10, 0.85);
+      border: 1px solid var(--neon-blue);
+      border-radius: 4px;
+      backdrop-filter: blur(5px);
+    }
+
+    /* 底部导航点 */
+    .dot-container { text-align: center; padding: 15px; background: transparent; }
+    .dot {
+      cursor: pointer;
+      height: 10px;
+      width: 10px;
+      margin: 0 6px;
+      background-color: #222233;
+      border-radius: 50%;
+      display: inline-block;
+      transition: all 0.4s ease;
+    }
+    .active, .dot:hover { background-color: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); }
+    .fade-anim { animation-name: fade; animation-duration: 1s; }
+    @keyframes fade { from {opacity: .5} to {opacity: 1} }
+
+    /* ================= 科技感案例表格 ================= */
+    .sci-fi-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: rgba(5, 5, 8, 0.9);
+    }
+    .sci-fi-table th, .sci-fi-table td { border: 1px solid var(--border-color); padding: 14px; text-align: left; }
+    .sci-fi-table th { background-color: rgba(0, 243, 255, 0.08); color: var(--neon-blue); font-family: 'Orbitron', sans-serif; }
+    .sci-fi-table tr:hover { background-color: rgba(255,255,255,0.03); }
+    .badge-pruned { color: #ff4d4d; border: 1px solid #ff4d4d; padding: 2px 6px; border-radius: 3px; font-size: 0.8rem; font-family: 'Fira Code', monospace; }
+    .badge-retained { color: #00ff88; border: 1px solid #00ff88; padding: 2px 6px; border-radius: 3px; font-size: 0.8rem; font-family: 'Fira Code', monospace; }
+    
+    pre { background-color: #030305 !important; color: #00ff88 !important; font-family: 'Fira Code', monospace; border: 1px solid var(--border-color); }
+  </style>
+</head>
+<body>
+
+<section class="section pt-6 pb-6">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h1 class="title is-2 publication-title">GLANCE: Global-to-Local Agentic Navigation for Cascade Evidence</h1>
+        <h2 class="subtitle is-5 mt-3" style="color: #6c7a87;">in LLM-based Fake News Verification</h2>
+        
+        <div class="is-size-5 publication-authors mt-5">
+          <span class="author-block"><strong>Chengying Huan</strong><sup>1</sup>,</span>
+          <span class="author-block"><strong>Ziheng Meng</strong><sup>1</sup>,</span>
+          <span class="author-block"><strong>Yongchao Liu</strong><sup>1</sup></span>
+        </div>
+        <div class="is-size-6 institution-block">
+          <span class="author-block"><sup>1</sup>Anhui University of Finance and Economics</span>
+        </div>
+
+        <div class="publication-links mt-5">
+          <a href="#" class="button btn-sci-fi">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span>
+            <span>Paper (arXiv)</span>
+          </a>
+          <a href="#" class="button btn-sci-fi">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            <span>Code & Dataset</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <div class="sci-fi-panel">
+      <h2 class="title is-4 has-text-centered mb-4" style="color: var(--neon-blue);">// ABSTRACT SYSTEM_LOG</h2>
+      <div class="content abstract-text">
+        <p>
+          Social media fake news verification requires models to reason over both textual content and complex social propagation structures. Although large language models (LLMs) have shown strong semantic reasoning ability, directly feeding the entire social cascade into LLMs often suffers from noisy context, excessive token consumption, and limited context windows.
+        </p>
+        <p>
+          To address these challenges, we propose <span class="highlight-text">GLANCE</span>, a Global-to-Local Agentic Navigation framework. GLANCE deploys multiple lightweight agents to navigate over the global cascade from complementary perspectives. A budget-aware aggregation module constructs a compact local evidence graph for final LLM truthfulness reasoning.
+        </p>
+        <p>
+          Extensive experiments demonstrate that GLANCE achieves strong Macro-F1 performance while <span class="highlight-text">reducing input token consumption by over 73%</span>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4 has-text-centered mb-5" style="color: var(--neon-blue);">// MULTI-AGENT_NAVIGATION_TRAJECTORY</h2>
+    
+    <div class="sci-fi-panel p-2">
+      <div class="carousel-container">
+        
+        <div class="mySlides fade-anim">
+          <img src="./static/images/framework.png" alt="Framework Diagram" onerror="this.src='https://via.placeholder.com/1200x600/0d0d17/00f3ff?text=[01_SYSTEM_FRAMEWORK:_framework.png]'">
+          <div class="text-caption">01. Overall Core Architecture of GLANCE Framework</div>
+        </div>
+
+        <div class="mySlides fade-anim">
+          <img src="./static/images/agent_walk.png" alt="Agent Navigation" onerror="this.src='https://via.placeholder.com/1200x600/0d0d17/00f3ff?text=[02_NAVIGATION_PROCESS:_agent_walk.png]'">
+          <div class="text-caption">02. Autonomous Cascade Graph Search & Evidence Mining</div>
+        </div>
+
+        <div class="mySlides fade-anim">
+          <img src="./static/images/results.png" alt="Experimental Results" onerror="this.src='https://via.placeholder.com/1200x600/0d0d17/00f3ff?text=[03_PERFORMANCE_METRICS:_results.png]'">
+          <div class="text-caption">03. Quantitative Performance & Token Efficiency Metrics</div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      
+      <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="sci-fi-panel">
+      <h2 class="title is-4 has-text-centered mb-4" style="color: var(--neon-blue);">// QUANTUM_REASONING_TRACE</h2>
+      <p class="has-text-centered" style="color: #566573; font-family: 'Fira Code', monospace; font-size: 0.85rem;">
+        [TRACE_ID: 12654431093 // HEALTH_MISINFORMATION_CASE]
+      </p>
+      
+      <table class="sci-fi-table mt-4">
+        <thead>
+          <tr>
+            <th style="width: 25%;">AGENT / TRACK</th>
+            <th>LOG EXECUTION & OBSERVATION METRICS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color: #ffffff; font-weight: bold;">Source Claim</td>
+            <td>"Hypnic jerks indicate the body is dying and poor physical functions..."</td>
+          </tr>
+          <tr>
+            <td style="color: var(--neon-blue);">Step 01<br><span style="font-size: 0.75rem; color:#647380;">Influence Agent</span></td>
+            <td>
+              > Action: <code style="background:none;color:var(--neon-blue);">explore_node(UID: 1826847792)</code><br>
+              > Observation: "Reposted without comments." (Structural redundancy)<br>
+              > Decision: <span class="badge-pruned">HALT & PRUNED</span> Low information entropy.
+            </td>
+          </tr>
+          <tr>
+            <td style="color: var(--neon-blue);">Step 02<br><span style="font-size: 0.75rem; color:#647380;">Controversy Agent</span></td>
+            <td>
+              > Action: <code style="background:none;color:var(--neon-blue);">explore_skeptical_attitudes()</code><br>
+              > Observation: "Is this truly scientific? It seems to be a normal physiological phenomenon."<br>
+              > Decision: <span class="badge-retained">RETAINED</span> High controversy signals triggered.
+            </td>
+          </tr>
+          <tr>
+            <td style="color: var(--neon-blue);">Step 03<br><span style="font-size: 0.75rem; color:#647380;">Evidence Agent</span></td>
+            <td>
+              > Action: <code style="background:none;color:var(--neon-blue);">mine_deep_factual_context()</code><br>
+              > Observation: "Hypnic jerk is a normal involuntary muscle twitching during sleep transition."<br>
+              > Decision: <span class="badge-retained">RETAINED</span> Decisive proof acquired. Call Stop().
+            </td>
+          </tr>
+          <tr style="background-color: rgba(0, 255, 136, 0.08); border-left: 3px solid #00ff88;">
+            <td style="color: #00ff88; font-weight: bold;">GLANCE INFERENCE</td>
+            <td>
+              > System Logic: The source claim exaggerates a benign sleep phenomenon to induce health panic.<br>
+              > Verdict: <strong style="color: #00ff88;">FAKE NEWS ✅</strong> &nbsp;|&nbsp; Token Cost: <strong>1,250 Tokens (-78%)</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-5 mb-3" style="color: var(--neon-blue);">// CITATION_BIBTEX</h2>
+    <div class="box" style="background-color: transparent; border: none; padding: 0;">
+<pre><code>@inproceedings{huan2026glance,
+  title={GLANCE: Global-to-Local Agentic Navigation for Cascade Evidence in LLM-based Fake News Verification},
+  author={},
+  booktitle={Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year={2026}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" style="background-color: #030305; padding: 30px 0; border-top: 1px solid var(--border-color);">
+  <div class="container">
+    <div class="content has-text-centered" style="color: #566573; font-size: 0.9rem;">
+      <p>
+        Project page adapted from <a href="https://github.com/nerfies/nerfies.github.io" style="color: var(--neon-blue);">Nerfies</a> under CC BY-SA 4.0.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let slideIndex = 1;
+  let slideInterval;
+  showSlides(slideIndex);
+  startAutoSlide();
+
+  function plusSlides(n) {
+    clearInterval(slideInterval);
+    showSlides(slideIndex += n);
+    startAutoSlide();
+  }
+
+  function currentSlide(n) {
+    clearInterval(slideInterval);
+    showSlides(slideIndex = n);
+    startAutoSlide();
+  }
+
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    if(slides.length > 0) {
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+    }
+  }
+
+  function startAutoSlide() {
+    slideInterval = setInterval(function() {
+      showSlides(slideIndex += 1);
+    }, 4500); // 4.5秒自动切图
+  }
+</script>
+
+</body>
+</html>
