@@ -227,18 +227,21 @@
     <div class="sci-fi-panel p-2">
       <div class="carousel-container">
         
+        <!-- 图1：框架图（对应你仓库里的 framework(1).png） -->
         <div class="mySlides fade-anim">
-          <img src="./static/images/framework.png" alt="Framework Diagram" onerror="this.src='https://via.placeholder.com/1200x600/0d0d17/00f3ff?text=[01_SYSTEM_FRAMEWORK:_framework.png]'">
+          <img src="./images/framework(1).png" alt="Framework Diagram" onerror="this.src='https://via.placeholder.com/1200x600/0d0d17/00f3ff?text=[01_SYSTEM_FRAMEWORK]'">
           <div class="text-caption">01. Overall Core Architecture of GLANCE Framework</div>
         </div>
 
+        <!-- 图2：导航过程图（对应你仓库里的 figure1.png） -->
         <div class="mySlides fade-anim">
-          <img src="./static/images/agent_walk.png" alt="Agent Navigation" onerror="this.src='https://via.placeholder.com/1200x600/0d0d17/00f3ff?text=[02_NAVIGATION_PROCESS:_agent_walk.png]'">
+          <img src="./images/figure1.png" alt="Agent Navigation" onerror="this.src='https://via.placeholder.com/1200x600/0d0d17/00f3ff?text=[02_NAVIGATION_PROCESS]'">
           <div class="text-caption">02. Autonomous Cascade Graph Search & Evidence Mining</div>
         </div>
 
+        <!-- 图3：实验结果图（对应你仓库里的 ablation_study_color_01(1).png） -->
         <div class="mySlides fade-anim">
-          <img src="./static/images/results.png" alt="Experimental Results" onerror="this.src='https://via.placeholder.com/1200x600/0d0d17/00f3ff?text=[03_PERFORMANCE_METRICS:_results.png]'">
+          <img src="./images/ablation_study_color_01(1).png" alt="Experimental Results" onerror="this.src='https://via.placeholder.com/1200x600/0d0d17/00f3ff?text=[03_PERFORMANCE_METRICS]'">
           <div class="text-caption">03. Quantitative Performance & Token Efficiency Metrics</div>
         </div>
 
@@ -287,7 +290,7 @@
             <td style="color: var(--neon-blue);">Step 02<br><span style="font-size: 0.75rem; color:#647380;">Controversy Agent</span></td>
             <td>
               > Action: <code style="background:none;color:var(--neon-blue);">explore_skeptical_attitudes()</code><br>
-              > Observation: "Is this truly scientific? It seems to be a normal physiological phenomenon."<br>
+              > Observation: "Is this truly scientific? It seems to be a normal physiological phenomenon."<<br>
               > Decision: <span class="badge-retained">RETAINED</span> High controversy signals triggered.
             </td>
           </tr>
@@ -295,7 +298,7 @@
             <td style="color: var(--neon-blue);">Step 03<br><span style="font-size: 0.75rem; color:#647380;">Evidence Agent</span></td>
             <td>
               > Action: <code style="background:none;color:var(--neon-blue);">mine_deep_factual_context()</code><br>
-              > Observation: "Hypnic jerk is a normal involuntary muscle twitching during sleep transition."<br>
+              > Observation: "Hypnic jerk is a normal involuntary muscle twitching during sleep transition."<<br>
               > Decision: <span class="badge-retained">RETAINED</span> Decisive proof acquired. Call Stop().
             </td>
           </tr>
@@ -318,7 +321,7 @@
     <div class="box" style="background-color: transparent; border: none; padding: 0;">
 <pre><code>@inproceedings{huan2026glance,
   title={GLANCE: Global-to-Local Agentic Navigation for Cascade Evidence in LLM-based Fake News Verification},
-  author={},
+  author={Huan, Chengying and Meng, Ziheng and Liu, Yongchao},
   booktitle={Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   year={2026}
 }</code></pre>
@@ -326,7 +329,7 @@
   </div>
 </section>
 
-<footer class="footer" style="background-color: #030305; padding: 30px 0; border-top: 1px solid var(--border-color);">
+<<footer class="footer" style="background-color: #030305; padding: 30px 0; border-top: 1px solid var(--border-color);">
   <div class="container">
     <div class="content has-text-centered" style="color: #566573; font-size: 0.9rem;">
       <p>
