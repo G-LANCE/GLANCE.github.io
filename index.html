@@ -11,17 +11,22 @@
 
   <style>
     :root {
-      --bg-primary: #0a0e1a;
-      --bg-secondary: #111827;
-      --bg-card: #1a1f2e;
-      --text-primary: #e2e8f0;
-      --text-secondary: #94a3b8;
-      --accent: #3b82f6;
-      --accent-glow: rgba(59, 130, 246, 0.2);
-      --accent-light: #60a5fa;
-      --border: #1e293b;
-      --success: #10b981;
-      --danger: #ef4444;
+      /* 沉稳学术深空配色，降低刺眼度，层次更高级 */
+      --bg-primary: #080c16;
+      --bg-secondary: #101624;
+      --bg-card: #171e2f;
+      --text-primary: #f1f5f9;
+      --text-secondary: #a1b0c8;
+      --accent: #4f8ef7;
+      --accent-glow: rgba(79, 142, 247, 0.18);
+      --accent-light: #81b4ff;
+      --border: #232d42;
+      --success: #22c58b;
+      --danger: #f45151;
+      --shadow-base: 0 4px 20px rgba(0,0,0,0.35);
+      --shadow-hover: 0 8px 32px rgba(0,0,0,0.45);
+      --radius-md: 10px;
+      --radius-lg: 16px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,14 +35,15 @@
       background-color: var(--bg-primary);
       color: var(--text-primary);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.7;
+      line-height: 1.75;
       -webkit-font-smoothing: antialiased;
+      letter-spacing: 0.2px;
     }
 
-    /* ===== Hero Section ===== */
+    /* 头部横幅 */
     .hero-section {
       background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-      padding: 80px 0 60px;
+      padding: 90px 0 70px;
       border-bottom: 1px solid var(--border);
       position: relative;
       overflow: hidden;
@@ -50,17 +56,17 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+      background: radial-gradient(circle at 50% 50%, rgba(79, 142, 247, 0.06) 0%, transparent 55%);
       pointer-events: none;
     }
 
     .publication-title {
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       font-weight: 700;
       color: #ffffff;
       letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 12px;
+      line-height: 1.15;
+      margin-bottom: 14px;
     }
 
     .publication-title .highlight {
@@ -71,16 +77,16 @@
     }
 
     .publication-subtitle {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: var(--text-secondary);
       font-weight: 400;
-      margin-bottom: 30px;
+      margin-bottom: 36px;
     }
 
     .author-block {
       display: inline-block;
-      margin: 0 12px;
-      font-size: 1.05rem;
+      margin: 0 14px;
+      font-size: 1.1rem;
       color: var(--text-primary);
     }
 
@@ -91,30 +97,30 @@
 
     .institution-block {
       color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-top: 12px;
+      font-size: 1rem;
+      margin-top: 14px;
     }
 
-    /* ===== Buttons ===== */
+    /* 按钮样式精简高级化 */
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: linear-gradient(135deg, var(--accent), #2563eb);
+      background: linear-gradient(135deg, var(--accent), #3672e8);
       color: #ffffff;
       border: none;
-      border-radius: 8px;
-      padding: 12px 24px;
-      font-size: 0.95rem;
+      border-radius: var(--radius-md);
+      padding: 13px 26px;
+      font-size: 0.98rem;
       font-weight: 500;
       text-decoration: none;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px var(--accent-glow);
+      box-shadow: 0 4px 16px var(--accent-glow);
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px var(--accent-glow);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px var(--accent-glow);
       color: #ffffff;
     }
 
@@ -125,9 +131,9 @@
       background: transparent;
       color: var(--text-primary);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 24px;
-      font-size: 0.95rem;
+      border-radius: var(--radius-md);
+      padding: 13px 26px;
+      font-size: 0.98rem;
       font-weight: 500;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -136,61 +142,61 @@
     .btn-secondary:hover {
       border-color: var(--accent);
       color: var(--accent-light);
-      background: rgba(59, 130, 246, 0.08);
+      background: rgba(79, 142, 247, 0.06);
     }
 
-    /* ===== Cards ===== */
+    /* 卡片统一风格 */
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--shadow-base);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
     }
 
     .card-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      padding-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 22px;
+      padding-bottom: 18px;
       border-bottom: 1px solid var(--border);
     }
 
     .card-header-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--accent), #2563eb);
-      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--accent), #3672e8);
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
       color: #ffffff;
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
 
     .card-header-title {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: #ffffff;
       letter-spacing: -0.01em;
     }
 
-    /* ===== Abstract ===== */
+    /* 摘要文本排版 */
     .abstract-text {
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       color: var(--text-secondary);
-      line-height: 1.8;
+      line-height: 1.85;
     }
 
     .abstract-text p {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .abstract-text .highlight {
@@ -198,13 +204,13 @@
       font-weight: 600;
     }
 
-    /* ===== Carousel ===== */
+    /* 轮播优化 */
     .carousel-wrapper {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: var(--shadow-base);
     }
 
     .carousel-container {
@@ -220,7 +226,7 @@
       width: 100%;
       height: 100%;
       opacity: 0;
-      transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.6s ease-in-out;
       pointer-events: none;
     }
 
@@ -233,7 +239,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      padding: 20px;
+      padding: 24px;
     }
 
     .slide-caption {
@@ -241,38 +247,37 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 16px 24px;
-      background: linear-gradient(transparent, rgba(10, 14, 26, 0.95));
+      padding: 18px 28px;
+      background: linear-gradient(transparent, rgba(8, 12, 22, 0.96));
       color: #ffffff;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 500;
     }
 
     .slide-caption .num {
-      color: var(--accent);
+      color: var(--accent-light);
       font-weight: 600;
       margin-right: 8px;
     }
 
-    /* Carousel Controls */
     .carousel-controls {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px;
+      padding: 14px 24px;
       border-top: 1px solid var(--border);
     }
 
     .carousel-nav {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     .carousel-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-md);
       border: 1px solid var(--border);
       background: transparent;
       color: var(--text-secondary);
@@ -280,23 +285,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
 
     .carousel-btn:hover {
       border-color: var(--accent);
       color: var(--accent-light);
-      background: rgba(59, 130, 246, 0.1);
+      background: rgba(79, 142, 247, 0.08);
     }
 
     .carousel-dots {
       display: flex;
-      gap: 8px;
+      gap: 10px;
     }
 
     .carousel-dot {
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--border);
       cursor: pointer;
@@ -305,137 +310,138 @@
 
     .carousel-dot.active {
       background: var(--accent);
-      width: 24px;
-      border-radius: 4px;
+      width: 26px;
+      border-radius: 5px;
     }
 
     .carousel-counter {
       color: var(--text-secondary);
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* ===== Table ===== */
+    /* 案例表格美化 */
     .data-table {
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      margin-top: 16px;
+      margin-top: 18px;
     }
 
     .data-table th,
     .data-table td {
-      padding: 14px 16px;
+      padding: 16px 18px;
       text-align: left;
       border-bottom: 1px solid var(--border);
     }
 
     .data-table th {
-      background: rgba(59, 130, 246, 0.08);
+      background: rgba(79, 142, 247, 0.07);
       color: var(--accent-light);
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
     }
 
     .data-table tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.025);
     }
 
     .data-table td {
       color: var(--text-secondary);
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     .badge {
       display: inline-block;
-      padding: 3px 10px;
-      border-radius: 4px;
-      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
       font-weight: 500;
       font-family: 'JetBrains Mono', monospace;
     }
 
     .badge-pruned {
-      background: rgba(239, 68, 68, 0.15);
+      background: rgba(244, 81, 81, 0.15);
       color: var(--danger);
-      border: 1px solid rgba(239, 68, 68, 0.3);
+      border: 1px solid rgba(244, 81, 81, 0.3);
     }
 
     .badge-retained {
-      background: rgba(16, 185, 129, 0.15);
+      background: rgba(34, 197, 139, 0.15);
       color: var(--success);
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(34, 197, 139, 0.3);
     }
 
     .verdict-row {
-      background: rgba(16, 185, 129, 0.08) !important;
-      border-left: 3px solid var(--success);
+      background: rgba(34, 197, 139, 0.09) !important;
+      border-left: 4px solid var(--success);
     }
 
     .verdict-row td {
       color: var(--text-primary) !important;
     }
 
-    /* ===== Code Block ===== */
+    /* 引用代码块 */
     .code-block {
-      background: #0d1117;
+      background: #0c101a;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
+      border-radius: var(--radius-md);
+      padding: 22px;
       overflow-x: auto;
     }
 
     .code-block pre {
       margin: 0;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: #c9d1d9;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #d1d9e8;
     }
 
-    .code-block .keyword { color: #ff7b72; }
-    .code-block .string { color: #a5d6ff; }
-    .code-block .tag { color: #7ee787; }
-    .code-block .attr { color: #79c0ff; }
+    .code-block .keyword { color: #ff8383; }
+    .code-block .string { color: #93c8ff; }
+    .code-block .tag { color: #86e0a5; }
+    .code-block .attr { color: #82bfff; }
 
-    /* ===== Footer ===== */
+    /* 页脚 */
     .site-footer {
       background: var(--bg-secondary);
       border-top: 1px solid var(--border);
-      padding: 30px 0;
-      margin-top: 60px;
+      padding: 36px 0;
+      margin-top: 70px;
     }
 
     .site-footer p {
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
 
-    /* ===== Animations ===== */
+    /* 入场动画 */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .fade-in {
-      animation: fadeIn 0.6s ease forwards;
+      animation: fadeIn 0.7s ease forwards;
     }
 
-    /* ===== Responsive ===== */
+    /* 响应式适配 */
     @media (max-width: 768px) {
-      .publication-title { font-size: 1.6rem; }
-      .publication-subtitle { font-size: 1rem; }
-      .card { padding: 20px; }
+      .publication-title { font-size: 1.8rem; }
+      .publication-subtitle { font-size: 1.1rem; }
+      .card { padding: 24px; }
       .carousel-container { aspect-ratio: 4 / 3; }
+      .hero-section { padding: 60px 0 45px; }
     }
   </style>
 <base target="_blank">
 </head>
 <body>
 
-<!-- ===== Hero Section ===== -->
+<!-- 头部标题区 -->
 <section class="hero-section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -452,7 +458,7 @@
           Anonymous Institution
         </div>
 
-        <div class="mt-5" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <div class="mt-5" style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
           <a href="#" class="btn-primary">
             <i class="fas fa-file-pdf"></i>
             <span>Paper (arXiv)</span>
@@ -467,8 +473,8 @@
   </div>
 </section>
 
-<!-- ===== Abstract ===== -->
-<section class="section" style="padding: 60px 0;">
+<!-- 摘要模块 -->
+<section class="section" style="padding: 65px 0;">
   <div class="container is-max-desktop">
     <div class="card fade-in">
       <div class="card-header">
@@ -479,69 +485,64 @@
       </div>
       <div class="abstract-text">
         <p>
-          Social media fake news verification requires models to reason over both textual content and complex social propagation structures. Although large language models (LLMs) have shown strong semantic reasoning ability, directly feeding the entire social cascade into LLMs often suffers from noisy context, excessive token consumption, and limited context windows.
+          Social media fake news verification requires models to reason over both textual content and complex social propagation structures. Although large language models (LLMs) have strong semantic reasoning capability, directly feeding complete social cascades into models inevitably brings noisy context, excessive token overhead and limited window constraints.
         </p>
         <p>
-          To address these challenges, we propose <span class="highlight">GLANCE</span>, a Global-to-Local Agentic Navigation framework. GLANCE deploys multiple lightweight agents to navigate over the global cascade from complementary perspectives. A budget-aware aggregation module constructs a compact local evidence graph for final LLM truthfulness reasoning.
+          To tackle these practical limitations, we propose <span class="highlight">GLANCE</span>, a Global-to-Local Agentic Navigation framework. Multiple lightweight agents explore the whole propagation graph from diverse perspectives, and a budget-aware aggregation module constructs compact local evidence graph for reliable LLM-based authenticity judgment.
         </p>
         <p>
-          Extensive experiments demonstrate that GLANCE achieves strong Macro-F1 performance while <span class="highlight">reducing input token consumption by over 73%</span> compared with global-cascade prompting.
+          Quantitative experiments demonstrate that our method maintains competitive Macro-F1 performance, meanwhile <span class="highlight">cutting input token consumption by more than 73%</span> compared with naive full-cascade prompt strategy.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== Carousel（已修改为4张图，包含Token效率分析） ===== -->
-<section class="section" style="padding: 0 0 60px;">
+<!-- 框架与结果轮播 -->
+<section class="section" style="padding: 0 0 65px;">
   <div class="container is-max-desktop">
     <div class="card" style="padding: 0; overflow: hidden;">
-      <div class="card-header" style="padding: 24px 32px 0; border-bottom: none;">
+      <div class="card-header" style="padding: 26px 36px 0; border-bottom: none;">
         <div class="card-header-icon">
           <i class="fas fa-images"></i>
         </div>
-        <h2 class="card-header-title">Framework & Results</h2>
+        <h2 class="card-header-title">Framework & Experimental Results</h2>
       </div>
 
-      <div class="carousel-wrapper" style="margin: 20px 32px 0;">
+      <div class="carousel-wrapper" style="margin: 22px 36px 0;">
         <div class="carousel-container">
-
-          <!-- 第1张：Framework（修复路径提示） -->
+          <!-- 1.整体框架 -->
           <div class="mySlides active-slide">
             <img src="./images/framework.png" alt="GLANCE Framework" 
-                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>framework.png not found in ./images/ (请检查文件名/路径是否正确)</div>';">
+                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>Image missing: framework.png</div>';">
             <div class="slide-caption">
               <span class="num">01</span> Overall Core Architecture of GLANCE Framework
             </div>
           </div>
-
-          <!-- 第2张：Agent Navigation -->
+          <!-- 2.智能体检索 -->
           <div class="mySlides">
             <img src="./images/figure1.png" alt="Agent Navigation" 
-                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>figure1.png not found in ./images/</div>';">
+                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>Image missing: figure1.png</div>';">
             <div class="slide-caption">
-              <span class="num">02</span> Autonomous Cascade Graph Search & Evidence Mining
+              <span class="num">02</span> Cascade Graph Search and Evidence Discovery
             </div>
           </div>
-
-          <!-- 第3张：Ablation Study -->
+          <!-- 3.消融实验 -->
           <div class="mySlides">
             <img src="./images/ablation.png" alt="Ablation Study" 
-                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>ablation.png not found in ./images/</div>';">
+                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>Image missing: ablation.png</div>';">
             <div class="slide-caption">
-              <span class="num">03</span> Ablation Study & Component Contribution Analysis
+              <span class="num">03</span> Component Ablation and Contribution Analysis
             </div>
           </div>
-
-          <!-- 第4张：Token Efficiency Analysis（新增） -->
+          <!-- 4.算力效率分析 -->
           <div class="mySlides">
             <img src="./images/token_efficiency_analysis.png" alt="Token Efficiency & Performance" 
-                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>token_efficiency_analysis.png not found in ./images/</div>';">
+                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>Image missing: token_efficiency_analysis.png</div>';">
             <div class="slide-caption">
-              <span class="num">04</span> Token Efficiency & Performance Trade-off Across Budgets
+              <span class="num">04</span> Token Efficiency and Model Performance Trade-off
             </div>
           </div>
-
         </div>
 
         <div class="carousel-controls">
@@ -553,7 +554,7 @@
               <span class="carousel-dot active" onclick="goToSlide(0)"></span>
               <span class="carousel-dot" onclick="goToSlide(1)"></span>
               <span class="carousel-dot" onclick="goToSlide(2)"></span>
-              <span class="carousel-dot" onclick="goToSlide(3)"></span> <!-- 新增第4个dot -->
+              <span class="carousel-dot" onclick="goToSlide(3)"></span>
             </div>
             <button class="carousel-btn" onclick="changeSlide(1)">
               <i class="fas fa-chevron-right"></i>
@@ -568,17 +569,17 @@
   </div>
 </section>
 
-<!-- ===== Case Study ===== -->
-<section class="section" style="padding: 0 0 60px;">
+<!-- 案例推理演示 -->
+<section class="section" style="padding: 0 0 65px;">
   <div class="container is-max-desktop">
     <div class="card fade-in">
       <div class="card-header">
         <div class="card-header-icon">
           <i class="fas fa-microscope"></i>
         </div>
-        <h2 class="card-header-title">Case Study: Reasoning Trace</h2>
+        <h2 class="card-header-title">Case Study: Inference Trace</h2>
       </div>
-      <p style="color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-bottom: 16px;">
+      <p style="color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; margin-bottom: 18px;">
         TRACE_ID: 12654431093 | HEALTH_MISINFORMATION_CASE
       </p>
 
@@ -587,7 +588,7 @@
           <thead>
             <tr>
               <th style="width: 22%;">Agent / Track</th>
-              <th>Log Execution & Observation</th>
+              <th>Execution Log & Observation</th>
             </tr>
           </thead>
           <tbody>
@@ -601,10 +602,10 @@
                 <div style="font-size: 0.8rem; color: var(--text-secondary);">Influence Agent</div>
               </td>
               <td>
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--accent-light); margin-bottom: 6px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; color: var(--accent-light); margin-bottom: 8px;">
                   > explore_node(UID: 1826847792)
                 </div>
-                <div style="color: var(--text-secondary); margin-bottom: 6px;">
+                <div style="color: var(--text-secondary); margin-bottom: 8px;">
                   Observation: "Reposted without comments." (Structural redundancy)
                 </div>
                 <div>
@@ -619,10 +620,10 @@
                 <div style="font-size: 0.8rem; color: var(--text-secondary);">Controversy Agent</div>
               </td>
               <td>
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--accent-light); margin-bottom: 6px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; color: var(--accent-light); margin-bottom: 8px;">
                   > explore_skeptical_attitudes()
                 </div>
-                <div style="color: var(--text-secondary); margin-bottom: 6px;">
+                <div style="color: var(--text-secondary); margin-bottom: 8px;">
                   Observation: "Is this truly scientific? It seems to be a normal physiological phenomenon."
                 </div>
                 <div>
@@ -637,28 +638,28 @@
                 <div style="font-size: 0.8rem; color: var(--text-secondary);">Evidence Agent</div>
               </td>
               <td>
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--accent-light); margin-bottom: 6px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; color: var(--accent-light); margin-bottom: 8px;">
                   > mine_deep_factual_context()
                 </div>
-                <div style="color: var(--text-secondary); margin-bottom: 6px;">
+                <div style="color: var(--text-secondary); margin-bottom: 8px;">
                   Observation: "Hypnic jerk is a normal involuntary muscle twitching during sleep transition."
                 </div>
                 <div>
                   Decision: <span class="badge badge-retained">RETAINED</span>
-                  <span style="color: var(--text-secondary); font-size: 0.9rem;">Decisive proof acquired. Call Stop().</span>
+                  <span style="color: var(--text-secondary); font-size: 0.9rem;">Decisive factual proof acquired</span>
                 </div>
               </td>
             </tr>
             <tr class="verdict-row">
               <td style="color: var(--success); font-weight: 700;">GLANCE Inference</td>
               <td>
-                <div style="margin-bottom: 8px;">
-                  System Logic: The source claim exaggerates a benign sleep phenomenon to induce health panic.
+                <div style="margin-bottom: 10px;">
+                  System Logic: The source claim exaggerates benign sleep phenomenon to induce unnecessary health panic.
                 </div>
                 <div>
                   Verdict: <strong style="color: var(--success);">FAKE NEWS ✓</strong>
-                  <span style="color: var(--text-secondary); margin-left: 12px;">|</span>
-                  <span style="color: var(--text-secondary); margin-left: 12px;">Token Cost: <strong style="color: #ffffff;">1,250 Tokens (-78%)</strong></span>
+                  <span style="color: var(--text-secondary); margin-left: 14px;">|</span>
+                  <span style="color: var(--text-secondary); margin-left: 14px;">Token Cost: <strong style="color: #ffffff;">1,250 Tokens (-78%)</strong></span>
                 </div>
               </td>
             </tr>
@@ -669,8 +670,8 @@
   </div>
 </section>
 
-<!-- ===== Citation ===== -->
-<section class="section" style="padding: 0 0 60px;">
+<!-- 引用格式 -->
+<section class="section" style="padding: 0 0 65px;">
   <div class="container is-max-desktop">
     <div class="card">
       <div class="card-header">
@@ -680,7 +681,7 @@
         <h2 class="card-header-title">Citation</h2>
       </div>
       <div class="code-block">
-        <pre><span class="tag">@inproceedings</span>{anonymous2026glance,
+<pre><span class="tag">@inproceedings</span>{anonymous2026glance,
   <span class="attr">title</span>={<span class="string">GLANCE: Global-to-Local Agentic Navigation for Cascade Evidence in LLM-based Fake News Verification</span>},
   <span class="attr">author</span>={<span class="string">Anonymous Authors</span>},
   <span class="attr">booktitle</span>={<span class="string">Proceedings of EMNLP</span>},
@@ -691,11 +692,11 @@
   </div>
 </section>
 
-<!-- ===== Footer ===== -->
+<!-- 页脚 -->
 <footer class="site-footer">
   <div class="container has-text-centered">
     <p>
-      Project page built with open-source templates
+      Project page built with open-source academic templates
     </p>
   </div>
 </footer>
@@ -708,7 +709,6 @@
   const totalEl = document.getElementById('totalSlides');
   let autoPlay;
 
-  // 自动更新总数量，确保4张图都能显示
   totalEl.textContent = slides.length;
 
   function updateSlide() {
@@ -734,7 +734,7 @@
   }
 
   function startAutoPlay() {
-    autoPlay = setInterval(() => changeSlide(1), 5000);
+    autoPlay = setInterval(() => changeSlide(1), 5500);
   }
 
   function resetAutoPlay() {
