@@ -492,7 +492,7 @@
   </div>
 </section>
 
-<!-- ===== Carousel ===== -->
+<!-- ===== Carousel（已修改为4张图，包含Token效率分析） ===== -->
 <section class="section" style="padding: 0 0 60px;">
   <div class="container is-max-desktop">
     <div class="card" style="padding: 0; overflow: hidden;">
@@ -506,14 +506,16 @@
       <div class="carousel-wrapper" style="margin: 20px 32px 0;">
         <div class="carousel-container">
 
+          <!-- 第1张：Framework（修复路径提示） -->
           <div class="mySlides active-slide">
             <img src="./images/framework.png" alt="GLANCE Framework" 
-                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>framework.png not found in ./images/</div>';">
+                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>framework.png not found in ./images/ (请检查文件名/路径是否正确)</div>';">
             <div class="slide-caption">
               <span class="num">01</span> Overall Core Architecture of GLANCE Framework
             </div>
           </div>
 
+          <!-- 第2张：Agent Navigation -->
           <div class="mySlides">
             <img src="./images/figure1.png" alt="Agent Navigation" 
                  onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>figure1.png not found in ./images/</div>';">
@@ -522,11 +524,21 @@
             </div>
           </div>
 
+          <!-- 第3张：Ablation Study -->
           <div class="mySlides">
             <img src="./images/ablation.png" alt="Ablation Study" 
                  onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>ablation.png not found in ./images/</div>';">
             <div class="slide-caption">
-              <span class="num">03</span> Ablation Study & Efficiency Analysis
+              <span class="num">03</span> Ablation Study & Component Contribution Analysis
+            </div>
+          </div>
+
+          <!-- 第4张：Token Efficiency Analysis（新增） -->
+          <div class="mySlides">
+            <img src="./images/token_efficiency_analysis.png" alt="Token Efficiency & Performance" 
+                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>token_efficiency_analysis.png not found in ./images/</div>';">
+            <div class="slide-caption">
+              <span class="num">04</span> Token Efficiency & Performance Trade-off Across Budgets
             </div>
           </div>
 
@@ -541,13 +553,14 @@
               <span class="carousel-dot active" onclick="goToSlide(0)"></span>
               <span class="carousel-dot" onclick="goToSlide(1)"></span>
               <span class="carousel-dot" onclick="goToSlide(2)"></span>
+              <span class="carousel-dot" onclick="goToSlide(3)"></span> <!-- 新增第4个dot -->
             </div>
             <button class="carousel-btn" onclick="changeSlide(1)">
               <i class="fas fa-chevron-right"></i>
             </button>
           </div>
           <div class="carousel-counter">
-            <span id="currentSlide">1</span> / <span id="totalSlides">3</span>
+            <span id="currentSlide">1</span> / <span id="totalSlides">4</span>
           </div>
         </div>
       </div>
@@ -695,6 +708,7 @@
   const totalEl = document.getElementById('totalSlides');
   let autoPlay;
 
+  // 自动更新总数量，确保4张图都能显示
   totalEl.textContent = slides.length;
 
   function updateSlide() {
