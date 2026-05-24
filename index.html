@@ -17,7 +17,7 @@
       --text-primary: #e2e8f0;
       --text-secondary: #94a3b8;
       --accent: #3b82f6;
-      --accent-glow: rgba(59, 130, 246, 0.3);
+      --accent-glow: rgba(59, 130, 246, 0.2);
       --accent-light: #60a5fa;
       --border: #1e293b;
       --success: #10b981;
@@ -89,12 +89,6 @@
       color: #ffffff;
     }
 
-    .author-block sup {
-      color: var(--accent);
-      font-size: 0.75rem;
-      margin-left: 2px;
-    }
-
     .institution-block {
       color: var(--text-secondary);
       font-size: 0.95rem;
@@ -152,6 +146,12 @@
       border-radius: 12px;
       padding: 32px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
     }
 
     .card-header {
@@ -216,14 +216,17 @@
     }
 
     .mySlides {
-      display: none;
+      position: absolute;
       width: 100%;
       height: 100%;
-      position: relative;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      pointer-events: none;
     }
 
     .mySlides.active-slide {
-      display: block;
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .mySlides img {
@@ -410,15 +413,6 @@
       font-size: 0.9rem;
     }
 
-    .site-footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .site-footer a:hover {
-      text-decoration: underline;
-    }
-
     /* ===== Animations ===== */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -452,12 +446,10 @@
         <h2 class="publication-subtitle">in LLM-based Fake News Verification</h2>
 
         <div class="publication-authors mt-5">
-          <span class="author-block"><strong>Chengying Huan</strong><sup>1</sup></span>
-          <span class="author-block"><strong>Ziheng Meng</strong><sup>1</sup></span>
-          <span class="author-block"><strong>Yongchao Liu</strong><sup>1</sup></span>
+          <span class="author-block"><strong>Anonymous Authors</strong></span>
         </div>
         <div class="institution-block">
-          <sup>1</sup>Anhui University of Finance and Economics
+          Anonymous Institution
         </div>
 
         <div class="mt-5" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
@@ -531,10 +523,10 @@
           </div>
 
           <div class="mySlides">
-            <img src="./images/results.png" alt="Experimental Results" 
-                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>results.png not found in ./images/</div>';">
+            <img src="./images/ablation.png" alt="Ablation Study" 
+                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);\'>ablation.png not found in ./images/</div>';">
             <div class="slide-caption">
-              <span class="num">03</span> Quantitative Performance & Token Efficiency Metrics
+              <span class="num">03</span> Ablation Study & Efficiency Analysis
             </div>
           </div>
 
@@ -675,9 +667,9 @@
         <h2 class="card-header-title">Citation</h2>
       </div>
       <div class="code-block">
-        <pre><span class="tag">@inproceedings</span>{huan2026glance,
+        <pre><span class="tag">@inproceedings</span>{anonymous2026glance,
   <span class="attr">title</span>={<span class="string">GLANCE: Global-to-Local Agentic Navigation for Cascade Evidence in LLM-based Fake News Verification</span>},
-  <span class="attr">author</span>={<span class="string">Huan, Chengying and Meng, Ziheng and Liu, Yongchao</span>},
+  <span class="attr">author</span>={<span class="string">Anonymous Authors</span>},
   <span class="attr">booktitle</span>={<span class="string">Proceedings of EMNLP</span>},
   <span class="attr">year</span>={<span class="string">2026</span>}
 }</pre>
@@ -690,7 +682,7 @@
 <footer class="site-footer">
   <div class="container has-text-centered">
     <p>
-      Project page adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> under CC BY-SA 4.0
+      Project page built with open-source templates
     </p>
   </div>
 </footer>
